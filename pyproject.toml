@@ -1,0 +1,80 @@
+[project]
+name = "paytract_api"
+dynamic = ["version"]
+description = "PayTract API"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "aiofiles>=25.1.0",
+    "aiosmtplib>=5.1.2",
+    "argon2-cffi>=25.1.0",
+    "b2sdk>=2.12.0",
+    "fastapi[standard]>=0.138.0",
+    "faststream[redis]>=0.7.1",
+    "filetype>=1.2.0",
+    "httpx>=0.28.1",
+    "jinja2>=3.1.6",
+    "nh3>=0.3.6",
+    "pybreaker>=1.4.1",
+    "pydantic>=2.13.4",
+    "pydantic-settings>=2.14.2",
+    "pyjwt>=2.13.0",
+    "python-slugify>=8.0.4",
+    "redis>=7.4.1",
+    "resend>=2.32.2",
+    "structlog>=26.1.0",
+    "tortoise-orm[asyncpg,ipython]>=1.1.7",
+    "typer>=0.26.7",
+    "user-agents>=2.2.0",
+]
+
+[dependency-groups]
+dev = ["pyright>=1.1.410", "ruff>=0.15.19"]
+
+[tool.setuptools.dynamic.version]
+attr = "app.__version__"
+
+[tool.ruff]
+fix = true
+exclude = ["*/migrations"]
+
+[tool.ruff.lint]
+extend-select = [
+    "UP",    # pyupgrade
+    "I",     # isort
+    "T20",   # flake8-print
+    "ANN",   # flake8-annotations
+    "ASYNC", # flake8-async
+    "S",     # flake8-bandit
+    "ICN",   # flake8-import-convention
+    "RUF",   # ruff
+    "ERA",   # eradicate
+    "D",     # pydocstyle
+
+]
+ignore = ["D100", "D104", "ANN401"]
+
+[tool.ruff.lint.extend-per-file-ignores]
+"app/scripts/*" = []
+
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.isort]
+case-sensitive = true
+length-sort = true
+
+[tool.tortoise]
+tortoise_orm = "app.orm.config.TORTOISE_CONFIG"
+
+
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
+include = ["app"]
+ignore = ["app/orm/models", "app/orm/migrations"]
+typeCheckingMode = "strict"
+
+useLibraryCodeForTypes = true
+reportMissingTypeStubs = false
