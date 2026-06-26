@@ -1,4 +1,4 @@
-name: "paytract_api"
+name: "paytract"
 services:
   # FastAPI Application
   api:
@@ -21,10 +21,6 @@ services:
       DB_NAME: ${DB_NAME}
 
       REDIS_URL: ${REDIS_URL}
-
-      B2_APP_KEY_ID: ${B2_APP_KEY_ID}
-      B2_APP_KEY: ${B2_APP_KEY}
-      B2_BUCKET_NAME: ${B2_BUCKET_NAME}
 
       RESEND_API_KEY: ${RESEND_API_KEY}
       RESEND_EMAIL: ${RESEND_EMAIL}
