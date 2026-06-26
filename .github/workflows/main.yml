@@ -82,10 +82,6 @@ jobs:
 
             echo 'REDIS_URL=${{ secrets.REDIS_URL }}' >> .env
 
-            echo 'B2_APP_KEY_ID=${{ secrets.B2_APP_KEY_ID }}' >> .env
-            echo 'B2_APP_KEY=${{ secrets.B2_APP_KEY }}' >> .env
-            echo 'B2_BUCKET_NAME=${{ secrets.B2_BUCKET_NAME }}' >> .env
-
             echo 'RESEND_API_KEY=${{ secrets.RESEND_API_KEY }}' >> .env
             echo 'RESEND_EMAIL=${{ secrets.RESEND_EMAIL }}' >> .env
 

@@ -3,13 +3,13 @@ from typing import Any, Annotated
 from fastapi import Depends, APIRouter, status
 
 from app.services.users import ProfileService
+from app.schemas.responses.users import ProfileResponseSchema
 from app.api.security.cookie_auth import ValidUser
 from app.schemas.responses.generic import (
     ErrorResponseSchema,
     SuccessResponseSchema,
     ValidationErrorResponseSchema,
 )
-from app.schemas.responses.profile import ProfileResponseSchema
 
 router = APIRouter(prefix="/user/me", tags=["User Profile"])
 
