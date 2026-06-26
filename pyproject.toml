@@ -12,6 +12,7 @@ dependencies = [
     "fastapi[standard]>=0.138.0",
     "faststream[redis]>=0.7.1",
     "filetype>=1.2.0",
+    "google-auth>=2.55.1",
     "httpx>=0.28.1",
     "jinja2>=3.1.6",
     "nh3>=0.3.6",

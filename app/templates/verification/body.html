@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Verify Your Email - PayTract</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: #f0f4ff;
+        font-family: "Inter", Arial, sans-serif;
+        color: #1a2340;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .wrapper {
+        max-width: 600px;
+        margin: 40px auto;
+        padding: 0 16px 48px;
+      }
+
+      /* ── Header ── */
+      .header {
+        text-align: center;
+        padding: 36px 0 28px;
+      }
+
+      .logo-wordmark {
+        display: block;
+        margin-top: 10px;
+        font-size: 26px;
+        font-weight: 700;
+        letter-spacing: -0.5px;
+      }
+
+      .logo-wordmark .pay {
+        color: #1a2340;
+      }
+      .logo-wordmark .tract {
+        color: #2563eb;
+      }
+
+      /* ── Card ── */
+      .card {
+        background: #ffffff;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 4px 24px rgba(37, 99, 235, 0.08);
+      }
+
+      /* Top gradient band — slightly different angle to distinguish from reset email */
+      .card-accent {
+        height: 5px;
+        background: linear-gradient(90deg, #2563eb 0%, #06b6d4 100%);
+      }
+
+      .card-body {
+        padding: 44px 48px 40px;
+      }
+
+      /* ── Hero illustration area ── */
+      .hero {
+        text-align: center;
+        margin-bottom: 32px;
+      }
+
+      .hero-circle {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 0 10px #eff6ff;
+      }
+
+      /* ── Typography ── */
+      .heading {
+        font-size: 22px;
+        font-weight: 700;
+        color: #1a2340;
+        margin-bottom: 8px;
+        letter-spacing: -0.3px;
+        text-align: center;
+      }
+
+      .subheading {
+        font-size: 14px;
+        color: #6b7280;
+        text-align: center;
+        margin-bottom: 32px;
+      }
+
+      .body-text {
+        font-size: 15px;
+        line-height: 1.7;
+        color: #4b5563;
+        margin-bottom: 12px;
+      }
+
+      /* ── OTP Block ── */
+      .otp-section {
+        background: #f8faff;
+        border: 1.5px dashed #bfdbfe;
+        border-radius: 14px;
+        padding: 28px 20px;
+        text-align: center;
+        margin: 28px 0;
+      }
+
+      .otp-label {
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: #93c5fd;
+        margin-bottom: 14px;
+      }
+
+      .otp-code {
+        display: inline-flex;
+        gap: 10px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .otp-digit {
+        width: 52px;
+        height: 60px;
+        background: #ffffff;
+        border: 1.5px solid #dbeafe;
+        border-radius: 10px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        font-weight: 700;
+        color: #1d4ed8;
+        letter-spacing: 0;
+        box-shadow: 0 2px 6px rgba(37, 99, 235, 0.07);
+      }
+
+      .otp-fallback {
+        font-size: 13px;
+        color: #9ca3af;
+        margin-top: 16px;
+      }
+
+      /* ── OR divider ── */
+      .or-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 24px 0;
+      }
+
+      .or-line {
+        flex: 1;
+        height: 1px;
+        background: #e5e7eb;
+      }
+
+      .or-label {
+        font-size: 12px;
+        font-weight: 600;
+        color: #9ca3af;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+
+      /* ── CTA Button ── */
+      .btn-wrap {
+        text-align: center;
+        margin: 4px 0 28px;
+      }
+
+      .btn {
+        display: inline-block;
+        background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
+        color: #ffffff !important;
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 600;
+        letter-spacing: 0.2px;
+        padding: 15px 40px;
+        border-radius: 12px;
+        box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+      }
+
+      /* ── Expiry notice ── */
+      .notice {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        background: #fff7ed;
+        border: 1px solid #fde68a;
+        border-radius: 10px;
+        padding: 14px 16px;
+        margin-bottom: 28px;
+      }
+
+      .notice svg {
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+
+      .notice-text {
+        font-size: 13.5px;
+        color: #92400e;
+        line-height: 1.5;
+      }
+
+      /* ── Steps ── */
+      .steps {
+        margin: 0 0 28px;
+      }
+
+      .steps-title {
+        font-size: 13px;
+        font-weight: 600;
+        color: #6b7280;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        margin-bottom: 14px;
+      }
+
+      .step {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+
+      .step-num {
+        width: 24px;
+        height: 24px;
+        background: #eff6ff;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: 700;
+        color: #2563eb;
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+
+      .step-text {
+        font-size: 14px;
+        color: #4b5563;
+        line-height: 1.5;
+      }
+
+      /* ── Divider ── */
+      .divider {
+        border: none;
+        border-top: 1px solid #e5e7eb;
+        margin: 28px 0;
+      }
+
+      /* ── Fallback link ── */
+      .fallback-label {
+        font-size: 12.5px;
+        color: #9ca3af;
+        margin-bottom: 6px;
+      }
+
+      .fallback-link {
+        font-size: 12px;
+        color: #2563eb;
+        word-break: break-all;
+        text-decoration: none;
+      }
+
+      /* ── Footer ── */
+      .footer {
+        text-align: center;
+        padding: 28px 16px 0;
+      }
+
+      .footer-text {
+        font-size: 12.5px;
+        color: #9ca3af;
+        line-height: 1.7;
+      }
+
+      .footer-text a {
+        color: #6b7280;
+        text-decoration: underline;
+      }
+
+      .footer-divider {
+        display: inline-block;
+        margin: 0 6px;
+        color: #d1d5db;
+      }
+
+      @media (max-width: 500px) {
+        .card-body {
+          padding: 32px 20px 28px;
+        }
+        .otp-digit {
+          width: 42px;
+          height: 52px;
+          font-size: 22px;
+        }
+        .btn {
+          padding: 14px 28px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <!-- Header / Logo -->
+      <div class="header">
+        <div class="logo-mark">
+          <svg
+            width="56"
+            height="60"
+            viewBox="0 0 56 60"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <linearGradient
+                id="pg2"
+                x1="0"
+                y1="0"
+                x2="56"
+                y2="60"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop stop-color="#3B82F6" />
+                <stop offset="1" stop-color="#1D4ED8" />
+              </linearGradient>
+              <linearGradient
+                id="sg2"
+                x1="10"
+                y1="28"
+                x2="40"
+                y2="60"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop stop-color="#1E3A8A" />
+                <stop offset="1" stop-color="#1D4ED8" />
+              </linearGradient>
+            </defs>
+            <path
+              d="M8 4C8 1.79 9.79 0 12 0H36C46.49 0 55 8.51 55 19C55 29.49 46.49 38 36 38H24V56C24 58.21 22.21 60 20 60H12C9.79 60 8 58.21 8 56V4Z"
+              fill="url(#pg2)"
+            />
+            <path
+              d="M24 28 L18 44 C16 50 20 60 28 60 H24 V28Z"
+              fill="url(#sg2)"
+              opacity="0.6"
+            />
+            <rect x="16" y="10" width="24" height="20" rx="4" fill="white" />
+            <rect x="20" y="14" width="16" height="2" rx="1" fill="#1a2340" />
+            <rect x="20" y="18" width="16" height="2" rx="1" fill="#1a2340" />
+            <rect x="20" y="22" width="12" height="2" rx="1" fill="#1a2340" />
+          </svg>
+        </div>
+        <span class="logo-wordmark">
+          <span class="pay">Pay</span><span class="tract">Tract</span>
+        </span>
+      </div>
+
+      <!-- Main Card -->
+      <div class="card">
+        <div class="card-accent"></div>
+        <div class="card-body">
+          <!-- Hero icon -->
+          <div class="hero">
+            <div class="hero-circle">
+              <svg
+                width="38"
+                height="38"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  stroke="#2563EB"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+          </div>
+
+          <h1 class="heading">Verify your email address</h1>
+          <p class="subheading">
+            Almost there, {{ user_first_name }}! One quick step to activate your
+            account.
+          </p>
+
+          <p class="body-text">
+            Enter the 6-digit code below in the PayTract app, or click the
+            verification button to confirm your email address —
+            <strong>{{ user_email }}</strong>.
+          </p>
+
+          <!-- OTP Block -->
+          <div class="otp-section">
+            <p class="otp-label">Your verification code</p>
+            <div class="otp-code">
+              {%- set digits = otp_code | string %} {% for d in digits %}
+              <span class="otp-digit">{{ d }}</span>
+              {% endfor %}
+            </div>
+            <p class="otp-fallback">
+              Can't see the boxes? Your code is: <strong>{{ otp_code }}</strong>
+            </p>
+          </div>
+
+          <!-- OR divider -->
+          <div class="or-row">
+            <div class="or-line"></div>
+            <span class="or-label">or</span>
+            <div class="or-line"></div>
+          </div>
+
+          <!-- CTA Button -->
+          <div class="btn-wrap">
+            <a href="{{ verification_url }}" class="btn">Verify My Email</a>
+          </div>
+
+          <!-- Expiry notice -->
+          <div class="notice">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <circle
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="#F59E0B"
+                stroke-width="1.5"
+              />
+              <path
+                d="M12 7v5l3 3"
+                stroke="#F59E0B"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+            </svg>
+            <p class="notice-text">
+              This code and link expire in
+              <strong>{{ expiry_duration | default('10 minutes') }}</strong>. If
+              it expires, sign in to PayTract and request a new one.
+            </p>
+          </div>
+
+          <!-- What's next steps -->
+          <div class="steps">
+            <p class="steps-title">What happens next</p>
+
+            <div class="step">
+              <span class="step-num">1</span>
+              <p class="step-text">
+                Your email gets verified and your PayTract account is fully
+                activated.
+              </p>
+            </div>
+            <div class="step">
+              <span class="step-num">2</span>
+              <p class="step-text">
+                You can start sending, tracking, and managing payments right
+                away.
+              </p>
+            </div>
+            <div class="step">
+              <span class="step-num">3</span>
+              <p class="step-text">
+                Set up your payment profile to unlock all PayTract features.
+              </p>
+            </div>
+          </div>
+
+          <hr class="divider" />
+
+          <p class="body-text" style="font-size: 13.5px; color: #9ca3af">
+            Didn't create a PayTract account? You can ignore this email — no
+            action is needed on your part.
+          </p>
+
+          <div style="margin-top: 20px">
+            <p class="fallback-label">
+              If the button doesn't work, copy and paste this link into your
+              browser:
+            </p>
+            <a href="{{ verification_url }}" class="fallback-link"
+              >{{ verification_url }}</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer">
+        <p class="footer-text">
+          © {{ current_year | default('2026') }} PayTract, Inc. All rights
+          reserved.<br />
+          {{ company_address | default('Anambra, Nigeria') }}<br /><br />
+          <a href="{{ unsubscribe_url | default('#') }}">Unsubscribe</a>
+          <span class="footer-divider">·</span>
+          <a href="{{ privacy_url | default('#') }}">Privacy Policy</a>
+          <span class="footer-divider">·</span>
+          <a href="{{ help_url | default('#') }}">Help Center</a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

@@ -33,5 +33,9 @@ class EnvSettings(BaseSettings):
     RESEND_API_KEY: str = ""
     RESEND_EMAIL: str = ""
 
+    GOOGLE_CLIENT_ID: str = ""
+
+    FRONTEND_URL: str = ""
+
 
 settings = EnvSettings()

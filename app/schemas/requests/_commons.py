@@ -50,3 +50,21 @@ def _strong_password(password: str) -> str:
 
 
 IsStrongPassword = Annotated[String, AfterValidator(_strong_password)]
+
+NIGERIAN_PHONE_REGEX = re.compile(r"^(?:\+234|234|0)(?:70|71|80|81|90|91)\d{8}$")
+
+
+def _nigerian_number(number: str) -> str:
+    if not NIGERIAN_PHONE_REGEX.fullmatch(number):
+        raise ValueError("must be a valid Nigerian phone number.")
+
+    if number.startswith("+234"):
+        return number[1:]  # -> 2348012345678
+
+    if number.startswith("234"):
+        return number  # already normalized
+
+    return "234" + number[1:]  # 08012345678 -> 2348012345678
+
+
+IsNigerianPhoneNumber = Annotated[String, AfterValidator(_nigerian_number)]

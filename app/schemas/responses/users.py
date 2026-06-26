@@ -8,3 +8,6 @@ class ProfileResponseSchema(BaseModel):
 
     id: UUID
     email: str
+    first_name: str | None
+    last_name: str | None
+    phone: str | None

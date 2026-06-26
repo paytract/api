@@ -17,5 +17,11 @@ class ProfileService:
         return success_response(
             status_code=status.HTTP_200_OK,
             message="Profile retrieved successfully.",
-            data={"id": user.id, "email": user.email},
+            data={
+                "id": user.id,
+                "email": user.email,
+                "first_name": user.first_name,
+                "last_name": user.last_name,
+                "phone": user.phone,
+            },
         )
