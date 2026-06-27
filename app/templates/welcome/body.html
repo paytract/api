@@ -1,1 +1,646 @@
-Welcome to Paytract
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to PayTract</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: #f0f4ff;
+        font-family: "Inter", Arial, sans-serif;
+        color: #1a2340;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .wrapper {
+        max-width: 600px;
+        margin: 40px auto;
+        padding: 0 16px 48px;
+      }
+
+      /* ── Header / Logo ── */
+      .header {
+        text-align: center;
+        padding: 36px 0 28px;
+      }
+
+      .logo-wordmark {
+        display: block;
+        margin-top: 10px;
+        font-size: 26px;
+        font-weight: 700;
+        letter-spacing: -0.5px;
+      }
+
+      .logo-wordmark .pay {
+        color: #1a2340;
+      }
+      .logo-wordmark .tract {
+        color: #2563eb;
+      }
+
+      /* ── Hero Card ── */
+      .hero-card {
+        background: linear-gradient(
+          135deg,
+          #1d4ed8 0%,
+          #1e40af 50%,
+          #1a2340 100%
+        );
+        border-radius: 20px;
+        padding: 48px 48px 44px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 16px;
+      }
+
+      /* Decorative circles */
+      .hero-card::before {
+        content: "";
+        position: absolute;
+        width: 260px;
+        height: 260px;
+        border-radius: 50%;
+        border: 40px solid rgba(255, 255, 255, 0.04);
+        top: -80px;
+        right: -60px;
+      }
+
+      .hero-card::after {
+        content: "";
+        position: absolute;
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        border: 30px solid rgba(255, 255, 255, 0.04);
+        bottom: -60px;
+        left: -40px;
+      }
+
+      .hero-badge {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 100px;
+        padding: 6px 16px;
+        font-size: 12px;
+        font-weight: 600;
+        color: #93c5fd;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+      }
+
+      .hero-title {
+        font-size: 34px;
+        font-weight: 800;
+        color: #ffffff;
+        line-height: 1.2;
+        letter-spacing: -0.8px;
+        margin-bottom: 12px;
+      }
+
+      .hero-title span {
+        color: #60a5fa;
+      }
+
+      .hero-sub {
+        font-size: 15px;
+        color: rgba(255, 255, 255, 0.65);
+        line-height: 1.6;
+        max-width: 380px;
+        margin: 0 auto 32px;
+      }
+
+      .hero-btn {
+        display: inline-block;
+        background: #ffffff;
+        color: #1d4ed8 !important;
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 700;
+        padding: 15px 38px;
+        border-radius: 12px;
+        letter-spacing: 0.1px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      /* ── Body Card ── */
+      .card {
+        background: #ffffff;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 4px 24px rgba(37, 99, 235, 0.08);
+        margin-bottom: 16px;
+      }
+
+      .card-body {
+        padding: 40px 48px 36px;
+      }
+
+      .greeting {
+        font-size: 18px;
+        font-weight: 700;
+        color: #1a2340;
+        margin-bottom: 12px;
+      }
+
+      .body-text {
+        font-size: 15px;
+        line-height: 1.75;
+        color: #4b5563;
+        margin-bottom: 16px;
+      }
+
+      /* ── Features Grid ── */
+      .features-title {
+        font-size: 13px;
+        font-weight: 600;
+        color: #9ca3af;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin: 32px 0 18px;
+      }
+
+      .features {
+        display: table;
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 10px;
+      }
+
+      .feature {
+        display: table-row;
+      }
+
+      .feature-icon-cell {
+        display: table-cell;
+        width: 48px;
+        vertical-align: top;
+        padding-bottom: 12px;
+      }
+
+      .feature-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .feature-icon.blue {
+        background: #eff6ff;
+      }
+      .feature-icon.indigo {
+        background: #eef2ff;
+      }
+      .feature-icon.cyan {
+        background: #ecfeff;
+      }
+      .feature-icon.green {
+        background: #f0fdf4;
+      }
+
+      .feature-content-cell {
+        display: table-cell;
+        vertical-align: top;
+        padding-left: 14px;
+        padding-bottom: 12px;
+      }
+
+      .feature-name {
+        font-size: 14px;
+        font-weight: 600;
+        color: #1a2340;
+        margin-bottom: 3px;
+      }
+
+      .feature-desc {
+        font-size: 13px;
+        color: #6b7280;
+        line-height: 1.5;
+      }
+
+      /* ── Divider ── */
+      .divider {
+        border: none;
+        border-top: 1px solid #f3f4f6;
+        margin: 28px 0;
+      }
+
+      /* ── Account info pill ── */
+      .account-box {
+        background: #f8faff;
+        border: 1.5px solid #dbeafe;
+        border-radius: 12px;
+        padding: 18px 20px;
+        margin-bottom: 28px;
+      }
+
+      .account-box-label {
+        font-size: 11.5px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #93c5fd;
+        margin-bottom: 10px;
+      }
+
+      .account-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 13.5px;
+        padding: 4px 0;
+      }
+
+      .account-key {
+        color: #6b7280;
+      }
+      .account-value {
+        color: #1a2340;
+        font-weight: 600;
+      }
+
+      /* ── Support note ── */
+      .support-note {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        background: #f0fdf4;
+        border: 1px solid #bbf7d0;
+        border-radius: 10px;
+        padding: 14px 16px;
+      }
+
+      .support-note svg {
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+
+      .support-text {
+        font-size: 13.5px;
+        color: #166534;
+        line-height: 1.5;
+      }
+
+      .support-text a {
+        color: #15803d;
+        font-weight: 600;
+        text-decoration: underline;
+      }
+
+      /* ── Footer ── */
+      .footer {
+        text-align: center;
+        padding: 28px 16px 0;
+      }
+
+      .social-row {
+        margin-bottom: 16px;
+      }
+
+      .social-link {
+        display: inline-block;
+        width: 36px;
+        height: 36px;
+        background: #e5e7eb;
+        border-radius: 50%;
+        margin: 0 4px;
+        line-height: 36px;
+        text-align: center;
+        text-decoration: none;
+      }
+
+      .footer-text {
+        font-size: 12.5px;
+        color: #9ca3af;
+        line-height: 1.7;
+      }
+
+      .footer-text a {
+        color: #6b7280;
+        text-decoration: underline;
+      }
+
+      .footer-divider {
+        display: inline-block;
+        margin: 0 6px;
+        color: #d1d5db;
+      }
+
+      @media (max-width: 500px) {
+        .hero-card {
+          padding: 36px 24px 32px;
+        }
+        .hero-title {
+          font-size: 26px;
+        }
+        .card-body {
+          padding: 28px 20px 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <!-- Logo -->
+      <div class="header">
+        <svg
+          width="56"
+          height="60"
+          viewBox="0 0 56 60"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <linearGradient
+              id="pg3"
+              x1="0"
+              y1="0"
+              x2="56"
+              y2="60"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop stop-color="#3B82F6" />
+              <stop offset="1" stop-color="#1D4ED8" />
+            </linearGradient>
+            <linearGradient
+              id="sg3"
+              x1="10"
+              y1="28"
+              x2="40"
+              y2="60"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop stop-color="#1E3A8A" />
+              <stop offset="1" stop-color="#1D4ED8" />
+            </linearGradient>
+          </defs>
+          <path
+            d="M8 4C8 1.79 9.79 0 12 0H36C46.49 0 55 8.51 55 19C55 29.49 46.49 38 36 38H24V56C24 58.21 22.21 60 20 60H12C9.79 60 8 58.21 8 56V4Z"
+            fill="url(#pg3)"
+          />
+          <path
+            d="M24 28 L18 44 C16 50 20 60 28 60 H24 V28Z"
+            fill="url(#sg3)"
+            opacity="0.6"
+          />
+          <rect x="16" y="10" width="24" height="20" rx="4" fill="white" />
+          <rect x="20" y="14" width="16" height="2" rx="1" fill="#1a2340" />
+          <rect x="20" y="18" width="16" height="2" rx="1" fill="#1a2340" />
+          <rect x="20" y="22" width="12" height="2" rx="1" fill="#1a2340" />
+        </svg>
+        <span class="logo-wordmark">
+          <span class="pay">Pay</span><span class="tract">Tract</span>
+        </span>
+      </div>
+
+      <!-- ── Hero Card ── -->
+      <div class="hero-card">
+        <div class="hero-badge">✦ &nbsp;Welcome aboard</div>
+        <h1 class="hero-title">
+          Your account is<br /><span>ready to go.</span>
+        </h1>
+        <p class="hero-sub">
+          You're now part of a smarter way to send, track, and manage payments —
+          all in one place.
+        </p>
+        <a href="{{ dashboard_url }}" class="hero-btn">Go to Dashboard →</a>
+      </div>
+
+      <!-- ── Body Card ── -->
+      <div class="card">
+        <div class="card-body">
+          <p class="greeting">Hey {{ user_first_name }} 👋</p>
+
+          <p class="body-text">
+            Welcome to PayTract! We're excited to have you. Your account has
+            been created and verified — you're all set to start managing your
+            payments with ease.
+          </p>
+          <p class="body-text">Here's a quick look at what you can do:</p>
+
+          <!-- Features -->
+          <p class="features-title">What's waiting for you</p>
+          <table class="features" role="presentation">
+            <tr class="feature">
+              <td class="feature-icon-cell">
+                <div class="feature-icon blue">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14H11v-2h2v2zm0-4H11V7h2v5z"
+                      fill="#2563EB"
+                      opacity="0"
+                    />
+                    <rect
+                      x="3"
+                      y="6"
+                      width="18"
+                      height="13"
+                      rx="2.5"
+                      stroke="#2563EB"
+                      stroke-width="1.5"
+                    />
+                    <path d="M3 10h18" stroke="#2563EB" stroke-width="1.5" />
+                    <circle cx="7.5" cy="14" r="1" fill="#2563EB" />
+                    <circle cx="12" cy="14" r="1" fill="#2563EB" />
+                  </svg>
+                </div>
+              </td>
+              <td class="feature-content-cell">
+                <p class="feature-name">Send & Receive Payments</p>
+                <p class="feature-desc">
+                  Transfer funds instantly and accept payments from anywhere in
+                  the world.
+                </p>
+              </td>
+            </tr>
+            <tr class="feature">
+              <td class="feature-icon-cell">
+                <div class="feature-icon indigo">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                      stroke="#4F46E5"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+              </td>
+              <td class="feature-content-cell">
+                <p class="feature-name">Real-Time Analytics</p>
+                <p class="feature-desc">
+                  Track every transaction with live dashboards and detailed
+                  spending insights.
+                </p>
+              </td>
+            </tr>
+            <tr class="feature">
+              <td class="feature-icon-cell">
+                <div class="feature-icon cyan">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
+                      stroke="#0891B2"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+              </td>
+              <td class="feature-content-cell">
+                <p class="feature-name">Smart Invoicing</p>
+                <p class="feature-desc">
+                  Create, send, and manage professional invoices — get paid
+                  faster.
+                </p>
+              </td>
+            </tr>
+            <tr class="feature">
+              <td class="feature-icon-cell">
+                <div class="feature-icon green">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                      stroke="#16A34A"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+              </td>
+              <td class="feature-content-cell">
+                <p class="feature-name">Bank-Grade Security</p>
+                <p class="feature-desc">
+                  Every transaction is protected with end-to-end encryption and
+                  fraud detection.
+                </p>
+              </td>
+            </tr>
+          </table>
+
+          <hr class="divider" />
+
+          <!-- Account info -->
+          <div class="account-box">
+            <p class="account-box-label">Your account details</p>
+            <div class="account-row">
+              <span class="account-key">Name</span>
+              <span class="account-value">{{ user_full_name }}</span>
+            </div>
+            <div class="account-row">
+              <span class="account-key">Email</span>
+              <span class="account-value">{{ user_email }}</span>
+            </div>
+            <div class="account-row">
+              <span class="account-key">Account ID</span>
+              <span class="account-value">{{ account_id }}</span>
+            </div>
+            <div class="account-row">
+              <span class="account-key">Member since</span>
+              <span class="account-value">{{ join_date }}</span>
+            </div>
+          </div>
+
+          <!-- Support note -->
+          <div class="support-note">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"
+                stroke="#16A34A"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+            </svg>
+            <p class="support-text">
+              Got questions? Our team is always here. Reach us at
+              <a
+                href="mailto:{{ support_email | default('support@paytract.com') }}"
+                >{{ support_email | default('support@paytract.com') }}</a
+              >
+              or visit our
+              <a href="{{ help_url | default('#') }}">Help Center</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer">
+        <div class="social-row">
+          <!-- Twitter/X -->
+          <a href="{{ twitter_url | default('#') }}" class="social-link">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="#6B7280"
+              style="vertical-align: middle"
+            >
+              <path
+                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+              />
+            </svg>
+          </a>
+          <!-- LinkedIn -->
+          <a href="{{ linkedin_url | default('#') }}" class="social-link">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="#6B7280"
+              style="vertical-align: middle"
+            >
+              <path
+                d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"
+              />
+              <circle cx="4" cy="4" r="2" fill="#6B7280" />
+            </svg>
+          </a>
+          <!-- Instagram -->
+          <a href="{{ instagram_url | default('#') }}" class="social-link">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#6B7280"
+              stroke-width="1.8"
+              style="vertical-align: middle"
+            >
+              <rect x="2" y="2" width="20" height="20" rx="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle cx="17.5" cy="6.5" r="0.8" fill="#6B7280" stroke="none" />
+            </svg>
+          </a>
+        </div>
+
+        <p class="footer-text">
+          © {{ current_year | default('2026') }} PayTract, Inc. All rights
+          reserved.<br />
+          {{ company_address | default('Anambra, Nigeria') }}<br /><br />
+          <a href="{{ unsubscribe_url | default('#') }}">Unsubscribe</a>
+          <span class="footer-divider">·</span>
+          <a href="{{ privacy_url | default('#') }}">Privacy Policy</a>
+          <span class="footer-divider">·</span>
+          <a href="{{ terms_url | default('#') }}">Terms of Service</a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

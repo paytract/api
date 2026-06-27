@@ -128,12 +128,12 @@ class AuthenticationService:
             email=user.email,
             type=EmailType.WELCOME,
             context={
-                "user_name": user.first_name or "User",
-                "account_type": "User",
-                "signup_date": user.date_joined.strftime("%B %d, %Y"),
-                "account_id": user.id.hex,
-                "getting_started_guide": "",
-                "dashboard_link": "",
+                "dashboard_url": f"{settings.FRONTEND_URL}/dashboard",
+                "user_first_name": user.first_name or "User",
+                "user_full_name": f"{user.first_name or ''} {user.last_name or ''}".strip(),
+                "user_email": user.email,
+                "account_id": str(user.id),
+                "join_date": user.date_joined.strftime("%B %d, %Y"),
                 "current_year": UtilityService.get_current_year(),
             },
         )

@@ -3,7 +3,7 @@ name: Deploy API to SERVER
 on:
   push:
     branches:
-      - main
+      - dev
 
 permissions:
   contents: read
@@ -84,6 +84,8 @@ jobs:
 
             echo 'RESEND_API_KEY=${{ secrets.RESEND_API_KEY }}' >> .env
             echo 'RESEND_EMAIL=${{ secrets.RESEND_EMAIL }}' >> .env
+
+            echo 'FRONTEND_URL=${{ secrets.FRONTEND_URL }}' >> .env
 
            
             # Modify docker-compose.yml to use GHCR image
