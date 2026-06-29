@@ -7,3 +7,5 @@ class EmailType(StrEnum):
     VERIFICATION = "verification"
     WELCOME = "welcome"
     CREDENTIALS_RESET = "credentials_reset"
+    ACCOUNT_WITHDRAWAL = "account_withdrawal"
+    ACCOUNT_DEPOSIT = "account_deposit"
