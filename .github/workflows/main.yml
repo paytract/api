@@ -3,7 +3,7 @@ name: Deploy API to SERVER
 on:
   push:
     branches:
-      - dev
+      - main
 
 permissions:
   contents: read

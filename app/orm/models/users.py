@@ -16,3 +16,8 @@ class User(models.Model):
     email_verified: bool = fields.BooleanField(default=False)
     date_joined: datetime = fields.DatetimeField(auto_now_add=True)
     last_active: datetime = fields.DatetimeField(auto_now=True)
+
+    class Meta(models.Model.Meta):
+        """User model metadata."""
+
+        table = "user"
