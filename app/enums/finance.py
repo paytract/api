@@ -12,7 +12,6 @@ class AccountTypes(StrEnum):
 
     SYSTEM = "SYSTEM"
     GIG = "GIG"
-    CONTRACT = "CONTRACT"
 
 
 class TransactionTypes(StrEnum):
