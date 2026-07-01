@@ -74,7 +74,7 @@ class AuthenticationService:
 
         names = full_name.split(" ", 1)
         first_name = names[0]
-        last_name = names[1] or None
+        last_name = names[1] if len(names) > 1 else None
 
         hashed_password = UtilityService.hash_password(password)
 

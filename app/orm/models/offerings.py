@@ -4,7 +4,7 @@ from datetime import datetime
 
 from tortoise import fields, models
 
-from app.enums.offerings import OfferingFrequency
+from app.enums.offerings import DurationStatus, OfferingFrequency
 
 from .users import User
 
@@ -44,12 +44,26 @@ class Gig(models.Model):
     frequency: OfferingFrequency = fields.CharEnumField(
         OfferingFrequency, max_length=50
     )
+
+    automatic_collection: bool = fields.BooleanField(default=False)
+
     account_name: str = fields.CharField(max_length=255, null=True)
     account_number: str = fields.CharField(max_length=20, null=True)
     account_bank: str = fields.CharField(max_length=255, null=True)
 
+    card_token: str = fields.CharField(max_length=255, null=True)
+    valid_card: bool = fields.BooleanField(default=False)
+    signed_at: datetime = fields.DatetimeField(null=True)
+    resigned: bool = fields.BooleanField(default=False)
+
     created_at: datetime = fields.DatetimeField(auto_now_add=True)
     ends_at: datetime = fields.DatetimeField()
+
+    # Annotations
+    total_durations: int
+    pending_durations: int
+    last_paid_collection_date: datetime | None
+    next_due_collection_date: datetime | None
 
     class Meta(models.Model.Meta):
         """Gig model metadata."""
@@ -57,31 +71,30 @@ class Gig(models.Model):
         table = "gigs"
 
 
-class Contract(models.Model):
-    """Contract model."""
+class Duration(models.Model):
+    """Duration model."""
 
-    id: UUID = fields.UUIDField(primary_key=True)
-    user: fields.ForeignKeyRelation[User] = fields.ForeignKeyField(
-        "main.User", related_name="contracts", on_delete=fields.CASCADE
+    id: int = fields.BigIntField(primary_key=True)
+    gig: fields.ForeignKeyRelation[Gig] = fields.ForeignKeyField(
+        "main.Gig", related_name="durations", on_delete=fields.CASCADE
     )
-    name: str = fields.CharField(max_length=255)
-    description: str = fields.TextField(null=True)
-    client: fields.ForeignKeyNullableRelation[Client] = fields.ForeignKeyField(
-        "main.Client", related_name="contracts", on_delete=fields.CASCADE, null=True
-    )
-    price: Decimal = fields.DecimalField(max_digits=10, decimal_places=2)
+
     frequency: OfferingFrequency = fields.CharEnumField(
         OfferingFrequency, max_length=50
     )
+    status: DurationStatus = fields.CharEnumField(
+        DurationStatus, max_length=50, default=DurationStatus.PENDING
+    )
+    amount_paid: Decimal = fields.DecimalField(
+        max_digits=10, decimal_places=2, default=0
+    )
 
-    mandate_id: str = fields.CharField(max_length=255, null=True)
-    is_valid: bool = fields.BooleanField(default=False)
+    start_at: datetime = fields.DatetimeField()
+    end_at: datetime = fields.DatetimeField()
 
     created_at: datetime = fields.DatetimeField(auto_now_add=True)
-    ends_at: datetime = fields.DatetimeField()
-    signed_at: datetime = fields.DatetimeField(null=True)
 
     class Meta(models.Model.Meta):
-        """Contract model metadata."""
+        """Duration model metadata."""
 
-        table = "contracts"
+        table = "durations"
